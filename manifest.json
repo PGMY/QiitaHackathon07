@@ -33,9 +33,17 @@
   ],
   "background": {
     "scripts": [
-      "add-fork-button.js"
+      "bk.js"
     ]
   },
+  "page_action": {
+      "default_icon": {
+         "19": "icons/icon19.png",
+         "48": "icons/icon48.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "__MSG_extensionName__"
+   },
   "permissions": [
     "<all_urls>"
   ]
