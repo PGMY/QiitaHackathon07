@@ -14,6 +14,7 @@ function getUrlVars()
 var post_str = "@id forked this POST ";
 
 $(function(){
+    alert("Hello World!");	
   var param = getUrlVars();
   if(typeof param["folk"] == "undefined")
   {
