@@ -11,7 +11,7 @@ function getUrlVars()
     return vars;
 }
 
-var post_str = 
+var post_str = "@id forked this POST ";
 
 $(function(){
   var param = getUrlVars();
@@ -34,22 +34,25 @@ $(function(){
 
     $('.btn-primary').click(function()
     {
-      if($('.btn-primary').html() == '送信'){
-       
-
-
-       $.post('/api/v2/items/' + param['items'] + '/comments'),
-        { data: "John"},
-        function(data){
-
-
+      if($('.btn-primary').html() != '送信'){
+         return;
       }
+      
+  　　var kekka1 = window.location.href.split("\/");
+  　　var kekka2 = kekka1[kekka1.length-3].split("#");
+     if(kekka2 != 'edit'){
+       return;
+     }
+  　　var id = kekka1[kekka1.length-2];
+
+      $.post('/api/v2/items/' + param['items'] + '/comments',
+        { data: post_str },
+          function(data){
 
 
-
-      }
-    });
-
+           }
+        }
+      );
 
 });
 
