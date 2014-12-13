@@ -24,7 +24,7 @@ $.ajax({
    beforeSend: function(req) {
         req.setRequestHeader("Authorization", "Bearer "+token);
     },*/
-    
+
     headers: {
     	"Host": "qiita.com",
     	'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ url_param = getUrlVars();
   	return;
   }
   var url = 'https://qiita.com/api/v2/items/' + url_param['items'];
-  
+
   $.get(
   		url,
 	function(data){
@@ -66,6 +66,17 @@ url_param = getUrlVars();
       {
         var fork_body = "元記事:[" + data['title'] + "](" + data['url'] + ')\n' + data['body'];
 
+        $.each(data["tags"], function(key, value) {
+            if ( key == 0 ){
+              $(".draftFormTagDatum").find(".draftFormTagDatum_name").val(value["name"]);
+              $(".draftFormTagDatum").find(".draftFormTagDatum_version").val(value["versions"]);
+            } else if ( key > 0 ){
+              var tagForm = $(".draftFormTagDatum").clone();
+              tagForm.find(".draftFormTagDatum_name").val(value["name"]);
+              tagForm.find(".draftFormTagDatum_version").val(value["versions"]);
+              $(".draftFormTagDatum").after(tagForm);
+            }
+        });
         $('#draft_item_raw_body').append(fork_body);
         $("#draft_item_title").val(data['title']);
         $('#draft_item_raw_body').trigger("change");
@@ -75,7 +86,7 @@ url_param = getUrlVars();
 
     $('.btn-primary').click(
     	function(){
-     
+
           if($(this).html() != '送信'){
           	alert("not 送信");
             return;
@@ -99,9 +110,3 @@ url_param = getUrlVars();
         post_comment('/api/v2/items/' + url_param['items'] + '/comments');
   });
 });
-
-
-
-
-
-
