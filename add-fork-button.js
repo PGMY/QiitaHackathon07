@@ -5,5 +5,5 @@ window.MyEmbededProgram = {
 };
 
 $(function(){
-  console.log("ろぐだよーう");
+  // alert("Hello World!");
 });

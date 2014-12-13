@@ -10,4 +10,3 @@ injectScript = function(file, node) {
 };
 
 injectScript(chrome.extension.getURL('/add-fork-button.js'), 'body');
-injectScript(chrome.extension.getURL('/embeded-script.js'), 'body');

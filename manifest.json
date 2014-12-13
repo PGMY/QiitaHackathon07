@@ -20,9 +20,13 @@
     }
   ],
   "web_accessible_resources": [
-    "add-fork-button.js",
-    "embeded-script.js"
+    "add-fork-button.js"
   ],
+  "background": {
+    "scripts": [
+      "add-fork-button.js"
+    ]
+  },
   "permissions": [
     "<all_urls>"
   ]
