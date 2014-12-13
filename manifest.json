@@ -29,11 +29,12 @@
     }
   ],
   "web_accessible_resources": [
-    "add-fork-button.js", 
+    "add-fork-button.js",
     "post.js"
   ],
   "background": {
     "scripts": [
+      "./js/lib/jquery-2.1.1.min.js",
       "bk.js"
     ]
   },
