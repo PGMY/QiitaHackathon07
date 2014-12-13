@@ -12,28 +12,37 @@ function getUrlVars()
 }
 
 var post_str = "@id forked this POST ";
+var url_param;
 
 $(function(){
-    alert("Hello World!");	
-  var param = getUrlVars();
-  if(typeof param["folk"] == "undefined")
+url_param = getUrlVars();
+  if(typeof url_param["fork"] == "undefined")
   {
   	return;
   }
-  if(typeof param["items"] == "undefined")
+  if(typeof url_param["items"] == "undefined")
   {
   	return;
   }
+  var url = 'https://qiita.com/api/v2/items/' + url_param['items'];
   
-  $.get('/api/v2/items/' + param['items']",
+  $.get(
+  		url,
 	function(data){
       if( typeof data['body'] != "undefined")
       {
-        $('#draft_item_raw_body').append(data['body']);
+        var fork_body = "元記事:[" + data['title'] + "](" + data['url'] + ')\n' + data['body'];
+
+        $('#draft_item_raw_body').append(fork_body);
+        $("#draft_item_title").val(data['title']);
+
+        $('#draft_item_raw_body').trigger("change");
+
       }
     });
 
-    $('.btn-primary').click(function()
+    $('.btn-primary').click(
+    	function()
     {
       if($('.btn-primary').html() != '送信'){
          return;
@@ -52,8 +61,8 @@ $(function(){
 
 
            }
-        }
       );
+  });
 
 });
 

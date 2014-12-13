@@ -29,7 +29,8 @@
     }
   ],
   "web_accessible_resources": [
-    "add-fork-button.js"
+    "add-fork-button.js", 
+    "post.js"
   ],
   "background": {
     "scripts": [
