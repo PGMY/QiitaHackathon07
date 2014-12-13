@@ -12,14 +12,14 @@ function getUrlVars()
     return vars;
 }
 
-var post_str = "@takutok forked this POST " + ;
+var post_str = "@takutok forked this POST "  ;
 var url_param;
 
 function post_comment(url, id){
 $.ajax({
    type: "POST",
    url: url,
-   data: '{"body": "' + post_str +'"}',
+   data: '{"body": "' + post_str + +"http://qiita.com/takutok/items/"+ id  +'"}',
    /*
    beforeSend: function(req) {
         req.setRequestHeader("Authorization", "Bearer "+token);
@@ -32,7 +32,7 @@ $.ajax({
     },
 
    success: function(msg){
-     alert( "Data Saved: " + msg );
+     //alert( "Data Saved: " + msg );
    }
  });
 /*
@@ -88,25 +88,25 @@ url_param = getUrlVars();
     	function(){
 
           if($(this).html() != '送信'){
-          	alert("not 送信");
+          	//alert("not 送信");
             return;
           }
 
 
             chrome.runtime.sendMessage({ req_url: "test" },
 			function(response){
-				alert("message sent");
+				//alert("message sent");
 			});
 
       　　var kekka1 = window.location.href.split("\/");
   　    　var kekka2 = kekka1[kekka1.length-1].split("#");
          if(kekka2 != 'edit'){
-           alert("edit error:"+kekka2);
+           //alert("edit error:"+kekka2);
            return;
          }
 
      　　var id = kekka1[kekka1.length-2];
         //alert('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
-        post_comment('/api/v2/items/' + url_param['items'] + '/comments');
+        post_comment('/api/v2/items/' + url_param['items'] + '/comments', id);
   });
 });
