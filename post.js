@@ -1,3 +1,4 @@
+var token =  "60c9b343011bf8d56b3e7a0b94ee29edb598f004";
 function getUrlVars()
 {
     var vars = [], hash;
@@ -11,16 +12,38 @@ function getUrlVars()
     return vars;
 }
 
-var post_str = "@id forked this POST ";
+var post_str = "@takutok forked this POST " + ;
 var url_param;
 
-function post_comment(url){
+function post_comment(url, id){
+$.ajax({
+   type: "POST",
+   url: url,
+   data: '{"body": "' + post_str +'"}',
+   /*
+   beforeSend: function(req) {
+        req.setRequestHeader("Authorization", "Bearer "+token);
+    },*/
+    
+    headers: {
+    	"Host": "qiita.com",
+    	'Content-Type': 'application/json',
+        "Authorization":"Bearer "+token
+    },
+
+   success: function(msg){
+     alert( "Data Saved: " + msg );
+   }
+ });
+/*
         $.post(url,
-          { data: post_str },
+          { data: post_str ,
+          	token : token },
           function(data){
            alert("1");
           }
       );
+*/
 }
 
 
@@ -72,8 +95,8 @@ url_param = getUrlVars();
          }
 
      　　var id = kekka1[kekka1.length-2];
-        alert('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
-        post_comment('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
+        //alert('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
+        post_comment('/api/v2/items/' + url_param['items'] + '/comments');
   });
 });
 
