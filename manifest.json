@@ -14,11 +14,13 @@
         "<all_urls>"
       ],
       "js": [
+        "https://code.jquery.com/jquery-2.1.1.min.js",
         "content-script.js"
       ]
     }
   ],
   "web_accessible_resources": [
+    "add-fork-button.js",
     "embeded-script.js"
   ],
   "permissions": [
