@@ -14,6 +14,16 @@ function getUrlVars()
 var post_str = "@id forked this POST ";
 var url_param;
 
+function post_comment(url){
+        $.post(url,
+          { data: post_str },
+          function(data){
+           alert("1");
+          }
+      );
+}
+
+
 $(function(){
 url_param = getUrlVars();
   if(typeof url_param["fork"] == "undefined")
@@ -35,35 +45,29 @@ url_param = getUrlVars();
 
         $('#draft_item_raw_body').append(fork_body);
         $("#draft_item_title").val(data['title']);
-
         $('#draft_item_raw_body').trigger("change");
 
       }
     });
 
     $('.btn-primary').click(
-    	function()
-    {
-      if($('.btn-primary').html() != '送信'){
-         return;
-      }
-      
-  　　var kekka1 = window.location.href.split("\/");
-  　　var kekka2 = kekka1[kekka1.length-3].split("#");
-     if(kekka2 != 'edit'){
-       return;
-     }
-  　　var id = kekka1[kekka1.length-2];
+    	function(){
+     
+          if($(this).html() != '送信'){
+          	alert("not 送信");
+            return;
+          }
+      　　var kekka1 = window.location.href.split("\/");
+  　    　var kekka2 = kekka1[kekka1.length-1].split("#");
+         if(kekka2 != 'edit'){
+           alert("edit error:"+kekka2);
+           return;
+         }
 
-      $.post('/api/v2/items/' + param['items'] + '/comments',
-        { data: post_str },
-          function(data){
-
-
-           }
-      );
+     　　var id = kekka1[kekka1.length-2];
+        alert('https://qiita.com/api/v2/items/' + param['items'] + '/comments');
+        post_comment('https://qiita.com/api/v2/items/' + param['items'] + '/comments');
   });
-
 });
 
 
