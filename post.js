@@ -11,6 +11,7 @@ function getUrlVars()
     return vars;
 }
 
+var post_str = 
 
 $(function(){
   var param = getUrlVars();
@@ -23,7 +24,7 @@ $(function(){
   	return;
   }
   
-  $.get('/api/v2/items?' + param['items']",
+  $.get('/api/v2/items/' + param['items']",
 	function(data){
       if( typeof data['body'] != "undefined")
       {
@@ -31,13 +32,23 @@ $(function(){
       }
     });
 
-    $('.js-submitButton').click(function()
+    $('.btn-primary').click(function()
     {
-      $('.draftFormSubmit_submitBtnLabel')
+      if($('.btn-primary').html() == '送信'){
+       
 
+
+       $.post('/api/v2/items/' + param['items'] + '/comments'),
+        { data: "John"},
+        function(data){
+
+
+      }
+
+
+
+      }
     });
-
-
 
 
 });
