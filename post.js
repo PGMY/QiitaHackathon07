@@ -57,6 +57,13 @@ url_param = getUrlVars();
           	alert("not 送信");
             return;
           }
+
+
+            chrome.runtime.sendMessage({ req_url: "test" },
+			function(response){
+				alert("message sent");
+			});
+
       　　var kekka1 = window.location.href.split("\/");
   　    　var kekka2 = kekka1[kekka1.length-1].split("#");
          if(kekka2 != 'edit'){
@@ -65,8 +72,8 @@ url_param = getUrlVars();
          }
 
      　　var id = kekka1[kekka1.length-2];
-        alert('https://qiita.com/api/v2/items/' + param['items'] + '/comments');
-        post_comment('https://qiita.com/api/v2/items/' + param['items'] + '/comments');
+        alert('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
+        post_comment('https://qiita.com/api/v2/items/' + url_param['items'] + '/comments');
   });
 });
 
