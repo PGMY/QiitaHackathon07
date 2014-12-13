@@ -19,7 +19,7 @@ function post_comment(url, id){
 $.ajax({
    type: "POST",
    url: url,
-   data: '{"body": "' + post_str + +"http://qiita.com/takutok/items/"+ id  +'"}',
+   data: '{"body": "' + post_str + "http://qiita.com/takutok/items/"+ id  +'"}',
    /*
    beforeSend: function(req) {
         req.setRequestHeader("Authorization", "Bearer "+token);
